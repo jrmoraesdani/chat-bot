@@ -1,22 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async headers() {
-        return [
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
           {
-            source: '/(.*)',
-            headers: [
-              {
-                key: 'Content-Security-Policy',
-                value: cspHeader.replace(/\n/g, ''),
-              },
-            ],
+            key: "x-frame-options",
+            value: "allow-from *.bubbleapps.io",
           },
-        ]
+          {
+            key: "Content-Security-Policy",
+            value: cspHeader.replace(/\n/g, ""),
+          },
+        ],
       },
+    ];
+  },
 };
 
 export default nextConfig;
-
 
 const cspHeader = `
     default-src 'self';
@@ -29,4 +32,4 @@ const cspHeader = `
     form-action 'self';
     frame-ancestors 'self' *.bubbleapps.io;
     upgrade-insecure-requests;
-`
+`;
