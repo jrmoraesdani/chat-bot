@@ -25,3 +25,12 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components{
+  .globalBtn{
+    @apply px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150 ease-in-out
+  }
+  .globalFocusInput{
+    @apply w-full resize-none rounded-md bg-gray-700 p-2 text-white focus:border-emerald-500 focus:bg-gray-600 focus:outline focus:outline-emerald-500
+  }
+}
