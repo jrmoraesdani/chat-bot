@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    async headers() {
+        return [
+          {
+            source: '/(.*)',
+            headers: [
+              {
+                key: 'Content-Security-Policy',
+                value: cspHeader.replace(/\n/g, ''),
+              },
+            ],
+          },
+        ]
+      },
+};
 
 export default nextConfig;
 
@@ -16,19 +30,3 @@ const cspHeader = `
     frame-ancestors 'self' *.bubbleapps.io;
     upgrade-insecure-requests;
 `
- 
-module.exports = {
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: cspHeader.replace(/\n/g, ''),
-          },
-        ],
-      },
-    ]
-  },
-}
